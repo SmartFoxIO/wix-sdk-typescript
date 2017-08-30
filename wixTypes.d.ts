@@ -225,8 +225,8 @@ interface WixStatic {
 						 componentType: string;
 						 widget?: {
 							 widgetId: string;
-							 allPages?: boolean,
-							 wixPageId?: boolean
+							 allPages?: boolean;
+							 wixPageId?: string;
 						 },
 						 page?: {
 							 title?: string;
