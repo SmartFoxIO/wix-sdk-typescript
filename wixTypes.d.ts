@@ -2,7 +2,7 @@
 
 declare namespace wix {
 
-	type EditorMode = 'editor' | 'preview';
+	type ViewMode = 'editor' | 'preview' | 'site' | 'standalone';
 	type DeviceType = 'desktop' | 'mobile';
 
 	interface ISiteInfo {
@@ -325,7 +325,7 @@ interface WixStatic {
 		getLocale(): string;
 		getOrigCompId(): string;
 		getPermissions(): string;
-		getViewMode(): string;
+		getViewMode(): wix.ViewMode;
 		getWidth(): number;
 		getDeviceType(): wix.DeviceType;
 
