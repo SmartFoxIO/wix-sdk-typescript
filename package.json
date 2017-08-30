@@ -4,6 +4,10 @@
   "typings": "wixTypes.d.ts",
   "main": "index.js",
   "repository": "git@github.com:SmartFoxIO/wix-sdk-typescript.git",
-  "author": "Pavel 'PK' Kaminsky <kaminsky.pavel@gmail.com>",
+  "author": "SmartFoxIO",
+  "contributors": [
+    "Pavel 'PK' Kaminsky <kaminsky.pavel@gmail.com>",
+    "Uri Shaked <uri@urish.com>"
+  ],
   "license": "MIT"
 }
