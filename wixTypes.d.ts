@@ -1,4 +1,8 @@
 declare namespace wix {
+
+	type EditorMode = 'editor' | 'preview';
+	type DeviceType = 'desktop' | 'mobile';
+
 	interface ISiteInfo {
 		url: string;
 		baseUrl?: string;
@@ -210,6 +214,7 @@ interface WixStatic {
 		THEME_CHANGE: string;
 		SITE_PUBLISHED: string;
 		STYLE_PARAMS_CHANGE: string;
+		DEVICE_TYPE_CHANGED: string;
 	};
 
 	Settings: {
@@ -278,6 +283,7 @@ interface WixStatic {
 		getPermissions(): string;
 		getViewMode(): string;
 		getWidth(): number;
+		getDeviceType(): wix.DeviceType;
 
 		Media: {
 			getImageUrl(imageId: string): string;
