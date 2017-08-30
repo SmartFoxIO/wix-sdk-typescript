@@ -1,3 +1,5 @@
+// See http://dev.wix.com/docs/sdk/using-the-sdk/
+
 declare namespace wix {
 
 	type EditorMode = 'editor' | 'preview';
@@ -34,6 +36,7 @@ declare namespace wix {
 	}
 
 	interface IWixColor {
+		name?: string;
 		reference: string;
 		value: string;
 	}
@@ -81,6 +84,45 @@ declare namespace wix {
 		numbers: {
 			[key: string]: number;
 		};
+	}
+
+	interface IThemeFont {
+		cdnName: string;
+		characterSets: string[];
+		cssFontFamily: string
+		displayName: string;
+		fallbacks: string;
+		fontFamily: string;
+		genericFamily: string;
+		permissions: string;
+		provider: string;
+		spriteIndex: number;
+	}
+
+	interface IThemeTextPreset {
+		editorKey: string;
+		fontFamily: string;
+		lineHeight: string;
+		size: string;
+		style: string;
+		value: string;
+		weight: string;
+	}
+
+	interface IThemeChangeParams {
+		fonts: {
+			cssUrls: string[];
+			fontMeta: {
+				lang: string;
+				fonts: IThemeFont[];
+			}[];
+			imageSpriteUrl: string;
+		};
+		siteColors: IWixColor[];
+		siteTextPresets: {
+			[key: string]: IThemeTextPreset;
+		};
+		style: IStyleParams;
 	}
 
 	interface IMediaOptions {
@@ -182,7 +224,9 @@ interface WixStatic {
 
 	getStyleInfo(callback: (sitePages: wix.ISitePage[]) => void): void;
 
-	requestLogin(onError: Function): void;
+	requestLogin(dialogOptions: { mode?: 'login' | 'signup', language?: string }, callback: (userInfo: wix.IUserInfo) => void, onError?: Function): void;
+
+	logOutCurrentMember(): void;
 
 	resizeWindow(width: number, height: number, onComplete?: Function): void;
 
@@ -223,25 +267,25 @@ interface WixStatic {
 		getDashboardAppUrl(callback: (url: string) => void): void;
 		openModal(url: string, width: number, height: number, title: string, onClose: Function): void;
 		openMediaDialog(mediaType: string, multiSelect: boolean, onSuccess: (selectedMedia: wix.IMediaOptions) => void, onCancel?: Function): void;
-		openReviewInfo(): void,
+		openReviewInfo(): void;
 		addComponent(options: {
-						 copyStyle?: boolean;
-						 styleId?: string;
-						 componentType: string;
-						 widget?: {
-							 widgetId: string;
-							 allPages?: boolean;
-							 wixPageId?: string;
-						 },
-						 page?: {
-							 title?: string;
-							 pageId: string;
-							 hidden: boolean;
-							 subPage: boolean;
-						 }
-					 },
-					 onSuccess?: (compId: string) => void,
-					 onFailure?: (msg: any) => void): void;
+			copyStyle?: boolean;
+			styleId?: string;
+			componentType: string;
+			widget?: {
+				widgetId: string;
+				allPages?: boolean;
+				wixPageId?: string;
+			},
+			page?: {
+				title?: string;
+				pageId: string;
+				hidden: boolean;
+				subPage: boolean;
+			}
+		},
+			onSuccess?: (compId: string) => void,
+			onFailure?: (msg: any) => void): void;
 
 		MediaType: {
 			AUDIO: string;
@@ -256,7 +300,7 @@ interface WixStatic {
 	Styles: {
 		getEditorFonts(callback: (fonts: wix.IFont) => void): void;
 		getSiteColors(): wix.IWixColor[];
-		getSiteTextPresets(callback: (result: { [key: string]: wix.IFont }) => void): void;
+		getSiteTextPresets(callback: (result: { [key: string]: wix.IThemeTextPreset }) => void): void;
 		getStyleFontByKey(key: string): Object;
 		getStyleColorByKey(key: string): string;
 		getStyleParams(callback: (params: wix.IStyleParams) => void): void;
