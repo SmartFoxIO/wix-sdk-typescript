@@ -2,7 +2,7 @@
 
 ![logo](https://user-images.githubusercontent.com/4253088/29959129-927747b0-8efe-11e7-9bd6-0497ed8d1584.png)
 
-an *unofficial* typescript Type definitions for Wix SDK.  
+*Unofficial* typescript Type definitions for Wix SDK.  
 Based on http://dev.wix.com/docs/sdk/using-the-sdk/
 
 **This is a work In progress**
