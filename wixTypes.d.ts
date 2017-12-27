@@ -16,7 +16,55 @@ declare namespace wix {
     }
 
     interface IInstanceParams {
+        /**
+         * The instance ID of the app within Wix. 
+         */
+        instanceId: string;
+
+        /**
+         * The date of the payload signature. e.g. "2015-12-10T06:57:37.201Z"
+         */
+        signDate: string;
+
+        /**
+         * The ID of the Wix user or site member who is logged in.
+         */
+        uid?: string;
+
+        /**
+         * The permission set of the Wix user or site member
+         */
+        permissions?: string;
+
+        /**
+         * The user's current IP address and port number. e.g. "91.199.119.13/35734"
+         */
+        ipAndPort: string;
+
+        /**
+         * The Premium Package ID, as was entered in the Dev Center during the app registration process. 
+         */
         vendorProductId?: string;
+            
+        /**
+         * The ID of an anonymous site visitor.  
+         */
+        aid?: string;
+        
+        /**
+         * The instance ID of the app in the original website. Appears only in copied sites.
+         */
+        originInstanceId?: string;
+        
+        /**
+         * The ID of the site owner. When this value is the same as the uid, it means the site owner is logged in.
+         *
+         * Note: The siteOwnerId for a given instanceId can change. If a site owner transfers the site to another user, 
+         * the existing instanceId is now linked to the new site owner.
+         * For example, let's say User A transfers the site to User B. The app keeps its instanceId - 
+         * but is now linked to User B's siteOwnerId.
+         */ 
+        siteOwnerId: string;
     }
 
     interface ISitePage {
