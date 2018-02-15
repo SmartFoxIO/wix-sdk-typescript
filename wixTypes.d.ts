@@ -306,7 +306,8 @@ interface WixStatic {
         THEME_CHANGE: string;
         SITE_PUBLISHED: string;
         STYLE_PARAMS_CHANGE: string;
-        DEVICE_TYPE_CHANGED: string;
+		DEVICE_TYPE_CHANGED: string;
+		SETTINGS_UPDATED: string;
     };
 
     Settings: {
@@ -317,7 +318,8 @@ interface WixStatic {
         openMediaDialog(mediaType: string, multiSelect: boolean, onSuccess: (selectedMedia: wix.IMediaOptions) => void, onCancel?: Function): void;
         openReviewInfo(): void;
         refreshApp(queryParams?: {}): void;
-        refreshAppByCompIds(compIds: [string], queryParams?: {}): void;
+		refreshAppByCompIds(compIds: [string], queryParams?: {}): void;
+		triggerSettingsUpdatedEvent(data: object, compId?: string): void;
         addComponent(options: {
                          copyStyle?: boolean;
                          styleId?: string;
