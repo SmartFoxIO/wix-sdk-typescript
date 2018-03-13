@@ -1,5 +1,7 @@
 // See http://dev.wix.com/docs/sdk/using-the-sdk/
 
+import IPackages = wix.IPackages;
+
 declare namespace wix {
 
     type ViewMode = 'editor' | 'preview' | 'site' | 'standalone';
@@ -205,6 +207,30 @@ declare namespace wix {
         };
         contactUpdate: IContact;
     }
+
+    export interface IPackagePeriod {
+        price: string;
+        Link: string;
+    }
+
+    interface IPackage {
+        id: string;
+        name: string;
+        price: string;
+        is_active: boolean;
+        freeMonth: boolean;
+        currencyCode: string;
+        currencySymbol: string;
+        monthly: IPackagePeriod;
+        yearly: IPackagePeriod;
+        oneTime: IPackagePeriod;
+        bestSellingFeature: string;
+        discountPercent: number;
+    }
+
+    interface IPackages {
+        packages: IPackage[]
+    }
 }
 
 interface WixStatic {
@@ -248,7 +274,9 @@ interface WixStatic {
     };
 
     Dashboard: {
-        getEditorUrl(callback: (url: string) => void): void;
+        getEditorUrl(callback: (packages) => void): void;
+        getProducts(onSuccess: (res: IPackages) => void, onError?: Function)
+
     };
 
     Events: {
