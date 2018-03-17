@@ -19,7 +19,7 @@ declare namespace wix {
 
     interface IInstanceParams {
         /**
-         * The instance ID of the app within Wix. 
+         * The instance ID of the app within Wix.
          */
         instanceId: string;
 
@@ -44,28 +44,28 @@ declare namespace wix {
         ipAndPort: string;
 
         /**
-         * The Premium Package ID, as was entered in the Dev Center during the app registration process. 
+         * The Premium Package ID, as was entered in the Dev Center during the app registration process.
          */
         vendorProductId?: string;
-            
+
         /**
-         * The ID of an anonymous site visitor.  
+         * The ID of an anonymous site visitor.
          */
         aid?: string;
-        
+
         /**
          * The instance ID of the app in the original website. Appears only in copied sites.
          */
         originInstanceId?: string;
-        
+
         /**
          * The ID of the site owner. When this value is the same as the uid, it means the site owner is logged in.
          *
-         * Note: The siteOwnerId for a given instanceId can change. If a site owner transfers the site to another user, 
+         * Note: The siteOwnerId for a given instanceId can change. If a site owner transfers the site to another user,
          * the existing instanceId is now linked to the new site owner.
-         * For example, let's say User A transfers the site to User B. The app keeps its instanceId - 
+         * For example, let's say User A transfers the site to User B. The app keeps its instanceId -
          * but is now linked to User B's siteOwnerId.
-         */ 
+         */
         siteOwnerId: string;
     }
 
@@ -322,8 +322,8 @@ interface WixStatic {
     };
 
     Dashboard: {
-        getEditorUrl(callback: (packages) => void): void;
-        getProducts(onSuccess: (res: IPackages) => void, onError?: Function)
+        getEditorUrl(callback: (url: string) => void): void;
+        getProducts(onSuccess: (res: IPackages) => void, onError?: Function): void;
 
     };
 
@@ -334,8 +334,8 @@ interface WixStatic {
         THEME_CHANGE: string;
         SITE_PUBLISHED: string;
         STYLE_PARAMS_CHANGE: string;
-		DEVICE_TYPE_CHANGED: string;
-		SETTINGS_UPDATED: string;
+        DEVICE_TYPE_CHANGED: string;
+        SETTINGS_UPDATED: string;
     };
 
     Settings: {
@@ -346,8 +346,8 @@ interface WixStatic {
         openMediaDialog(mediaType: string, multiSelect: boolean, onSuccess: (selectedMedia: wix.IMediaOptions) => void, onCancel?: Function): void;
         openReviewInfo(): void;
         refreshApp(queryParams?: {}): void;
-		refreshAppByCompIds(compIds: [string], queryParams?: {}): void;
-		triggerSettingsUpdatedEvent(data: object, compId?: string): void;
+        refreshAppByCompIds(compIds: [string], queryParams?: {}): void;
+        triggerSettingsUpdatedEvent(data: object, compId?: string): void;
         addComponent(options: {
                          copyStyle?: boolean;
                          styleId?: string;
