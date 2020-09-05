@@ -279,6 +279,18 @@ declare namespace wix {
     interface IPackages {
         packages: IPackage[]
     }
+    
+    interface IConsentPolicy {
+        defaultPolicy: boolean; // True = this policy is the default policy for the site as defined by the site owner. False = the user actively accepted/set this policy.
+        policy: {
+            functional: boolean;
+            analytics: boolean;
+            advertising: boolean;
+            dataToThirdParty: boolean;
+            essential: boolean;
+        };
+        createdDate: string; // ISO 8601 timestamp
+    }
 }
 
 interface WixStatic {
@@ -408,6 +420,7 @@ interface WixStatic {
         getViewMode(): wix.ViewMode;
         getWidth(): number;
         getDeviceType(): wix.DeviceType;
+        getCurrentConsentPolicy(): wix.IConsentPolicy;
 
         Media: {
             getImageUrl(imageId: string): string;
