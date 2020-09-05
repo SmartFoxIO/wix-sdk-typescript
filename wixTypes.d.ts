@@ -3,7 +3,6 @@
 import IPackages = wix.IPackages;
 
 declare namespace wix {
-
     type ViewMode = 'editor' | 'preview' | 'site' | 'standalone';
     type DeviceType = 'desktop' | 'mobile';
 
@@ -128,7 +127,7 @@ declare namespace wix {
             };
         };
         fonts: {
-            [key: string]: IFont
+            [key: string]: IFont;
         };
         googleFontsCssUrl: string;
         numbers: {
@@ -139,7 +138,7 @@ declare namespace wix {
     interface IThemeFont {
         cdnName: string;
         characterSets: string[];
-        cssFontFamily: string
+        cssFontFamily: string;
         displayName: string;
         fallbacks: string;
         fontFamily: string;
@@ -202,7 +201,13 @@ declare namespace wix {
             tag: string;
             email: string;
             emailStatus?: 'optOut' | 'transactional' | 'recurring';
-            deliveryStatus?: 'VALID' | 'SPAM' | 'COMPLAINT' | 'REJECTED' | 'DEFERRAL' | 'BOUNCE'
+            deliveryStatus?:
+                | 'VALID'
+                | 'SPAM'
+                | 'COMPLAINT'
+                | 'REJECTED'
+                | 'DEFERRAL'
+                | 'BOUNCE';
         }[];
         phones?: {
             id?: number;
@@ -277,9 +282,9 @@ declare namespace wix {
     }
 
     interface IPackages {
-        packages: IPackage[]
+        packages: IPackage[];
     }
-    
+
     interface IConsentPolicy {
         defaultPolicy: boolean; // True = this policy is the default policy for the site as defined by the site owner. False = the user actively accepted/set this policy.
         policy: {
@@ -310,7 +315,11 @@ interface WixStatic {
 
     getStyleInfo(callback: (sitePages: wix.ISitePage[]) => void): void;
 
-    requestLogin(dialogOptions: { mode?: 'login' | 'signup', language?: string }, callback: (userInfo: wix.IUserInfo) => void, onError?: Function): void;
+    requestLogin(
+        dialogOptions: { mode?: 'login' | 'signup'; language?: string },
+        callback: (userInfo: wix.IUserInfo) => void,
+        onError?: Function
+    ): void;
 
     logOutCurrentMember(): void;
 
@@ -318,9 +327,19 @@ interface WixStatic {
 
     setHeight(value: number): void;
 
-    navigateToComponent(compId: string, options?: { pageId: string }, onFailure?: (error: any) => void): void;
+    navigateToComponent(
+        compId: string,
+        options?: { pageId: string },
+        onFailure?: (error: any) => void
+    ): void;
 
-    openModal(url: string, width: number, height: number, onClose?: Function, theme?: string): void;
+    openModal(
+        url: string,
+        width: number,
+        height: number,
+        onClose?: Function,
+        theme?: string
+    ): void;
 
     Activities: {
         Type: {
@@ -330,13 +349,22 @@ interface WixStatic {
             SOCIAL_COMMENT: string;
         };
 
-        postActivity(activity: wix.IActivity, onSuccess: (result: { activityId?: string, contactId?: string }) => void, onError: (result: any) => void): void;
+        postActivity(
+            activity: wix.IActivity,
+            onSuccess: (result: {
+                activityId?: string;
+                contactId?: string;
+            }) => void,
+            onError: (result: any) => void
+        ): void;
     };
 
     Dashboard: {
         getEditorUrl(callback: (url: string) => void): void;
-        getProducts(onSuccess: (res: IPackages) => void, onError?: Function): void;
-
+        getProducts(
+            onSuccess: (res: IPackages) => void,
+            onError?: Function
+        ): void;
     };
 
     Events: {
@@ -354,30 +382,43 @@ interface WixStatic {
         closeWindow(options?: {}): void;
         openBillingPage(): void;
         getDashboardAppUrl(callback: (url: string) => void): void;
-        openModal(url: string, width: number, height: number, title: string, onClose: Function): void;
-        openMediaDialog(mediaType: string, multiSelect: boolean, onSuccess: (selectedMedia: wix.IMediaOptions) => void, onCancel?: Function): void;
+        openModal(
+            url: string,
+            width: number,
+            height: number,
+            title: string,
+            onClose: Function
+        ): void;
+        openMediaDialog(
+            mediaType: string,
+            multiSelect: boolean,
+            onSuccess: (selectedMedia: wix.IMediaOptions) => void,
+            onCancel?: Function
+        ): void;
         openReviewInfo(): void;
         refreshApp(queryParams?: {}): void;
         refreshAppByCompIds(compIds: [string], queryParams?: {}): void;
         triggerSettingsUpdatedEvent(data: object, compId?: string): void;
-        addComponent(options: {
-                         copyStyle?: boolean;
-                         styleId?: string;
-                         componentType: string;
-                         widget?: {
-                             widgetId: string;
-                             allPages?: boolean;
-                             wixPageId?: string;
-                         },
-                         page?: {
-                             title?: string;
-                             pageId: string;
-                             hidden: boolean;
-                             subPage: boolean;
-                         }
-                     },
-                     onSuccess?: (compId: string) => void,
-                     onFailure?: (msg: any) => void): void;
+        addComponent(
+            options: {
+                copyStyle?: boolean;
+                styleId?: string;
+                componentType: string;
+                widget?: {
+                    widgetId: string;
+                    allPages?: boolean;
+                    wixPageId?: string;
+                };
+                page?: {
+                    title?: string;
+                    pageId: string;
+                    hidden: boolean;
+                    subPage: boolean;
+                };
+            },
+            onSuccess?: (compId: string) => void,
+            onFailure?: (msg: any) => void
+        ): void;
 
         MediaType: {
             AUDIO: string;
@@ -386,20 +427,35 @@ interface WixStatic {
             IMAGE: string;
             SECURE_MUSIC: string;
             SWF: string;
-        }
+        };
     };
 
     Styles: {
         getEditorFonts(callback: (fonts: wix.IFont) => void): void;
         getSiteColors(): wix.IWixColor[];
-        getSiteTextPresets(callback: (result: { [key: string]: wix.IThemeTextPreset }) => void): void;
+        getSiteTextPresets(
+            callback: (result: { [key: string]: wix.IThemeTextPreset }) => void
+        ): void;
         getStyleFontByKey(key: string): Object;
         getStyleColorByKey(key: string): string;
         getStyleParams(callback: (params: wix.IStyleParams) => void): void;
         getColorByreference(reference: string): wix.IWixColor;
-        setBooleanParam(key: string, value: boolean, callback: Function, onError: Function): void;
-        setNumberParam(key: string, value: number, callback: Function, onError: Function): void;
-        setColorParam(key: string, value: { value: { opacity: number; rgba: string; } } | string): void;
+        setBooleanParam(
+            key: string,
+            value: boolean,
+            callback: Function,
+            onError: Function
+        ): void;
+        setNumberParam(
+            key: string,
+            value: number,
+            callback: Function,
+            onError: Function
+        ): void;
+        setColorParam(
+            key: string,
+            value: { value: { opacity: number; rgba: string } } | string
+        ): void;
         setFontParam(key: string, value: { value: any }): void;
         setUILIBParamValue(type: string, key: string, value: any): void;
     };
@@ -424,14 +480,19 @@ interface WixStatic {
 
         Media: {
             getImageUrl(imageId: string): string;
-            getResizedImageUrl(imageId: string, width: number, height: number, sharpParams?: {
-                quality?: number;
-                filter?: number;
-                usm_r: number;
-                usm_a: number;
-                usm_t: number;
-            }): string;
-        }
+            getResizedImageUrl(
+                imageId: string,
+                width: number,
+                height: number,
+                sharpParams?: {
+                    quality?: number;
+                    filter?: number;
+                    usm_r: number;
+                    usm_a: number;
+                    usm_t: number;
+                }
+            ): string;
+        };
     };
 }
 
