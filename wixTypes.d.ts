@@ -299,7 +299,9 @@ declare namespace wix {
 }
 
 interface WixStatic {
-    addEventListener(name: string, callback: Function): void;
+    addEventListener(name: string, callback: Function): number;
+    
+    removeEventListener(eventName: string, callBackOrId: Function | number): void;
 
     closeWindow(message?: any): void;
 
