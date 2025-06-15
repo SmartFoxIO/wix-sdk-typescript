@@ -3,7 +3,7 @@
   "version": "1.3.0",
   "typings": "wixTypes.d.ts",
   "main": "index.js",
-  "repository": "git@github.com:SmartFoxIO/wix-sdk-typescript.git",
+  "repository": "https://github.com/SmartFoxIO/wix-sdk-typescript",
   "author": "SmartFoxIO",
   "contributors": [
     "Pavel 'PK' Kaminsky <kaminsky.pavel@gmail.com>",
