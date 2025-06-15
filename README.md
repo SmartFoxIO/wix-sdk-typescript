@@ -3,7 +3,7 @@
 ![logo](https://user-images.githubusercontent.com/4253088/29959129-927747b0-8efe-11e7-9bd6-0497ed8d1584.png)
 
 *Unofficial* typescript Type definitions for Wix SDK.  
-Based on http://dev.wix.com/docs/sdk/using-the-sdk/
+Based on https://dev.wix.com/docs/client/api-reference/deprecated/iframe-sdk-deprecated/using-the-sdk
 
 **This is a work In progress**
 

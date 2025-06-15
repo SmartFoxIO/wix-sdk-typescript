@@ -1,4 +1,4 @@
-// See http://dev.wix.com/docs/sdk/using-the-sdk/
+// See https://dev.wix.com/docs/client/api-reference/deprecated/iframe-sdk-deprecated/using-the-sdk
 
 import IPackages = wix.IPackages;
 
